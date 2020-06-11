@@ -15,9 +15,20 @@
 
 ## 三 使用
 
-写一个 todolist 的 示例
+#### 1.API使用列表 
+
+> source\vue-next\packages\reactivity\src\index.ts
+
+- reactive: 创建响应式对象；
+
+| ---|定义响应式对象| 计算属性 |
+|---|---| --- |
+|VUE2|Options API data| Options API computed|
+|VUE3|reactive| computed|
 
 ## 四 原理
+
+- proxy实现数据响应式原理
 
 ## 五 我的学习记录
 
