@@ -6,13 +6,16 @@
 
 ## 一 为什么要用 Vue3 ?
 
-- 性能：
+- 性能：比 vue2 快，浏览器原生属性 Proxy 替代 defineProperty、vdom 的静态标记
 - ts 支持：
 - 按需引入：
+- 新增 vite：
 
 ## 二 Vue3 功能优化点有哪些？
 
 ## 三 使用
+
+写一个 todolist 的 示例
 
 ## 四 原理
 
