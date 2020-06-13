@@ -3,6 +3,26 @@
 ## 前言：
 
 这篇文章是本人学习 Vue3 后的一点小总结，也记录的自己的学习过程。
+拉取代码到本地后
+
+#### 用.html 体验语法 或者 要运行/root/source/exercise/**\***.html，需要如下操作：
+
+- git submodule add https://github.com/vuejs/vue-next source/vue-next
+- git submodule update --init --recursive
+- ## 修改镜像
+
+  yarn config set registry https://registry.npm.taobao.org --global
+  yarn config set disturl https://npm.taobao.org/dist --global
+
+- yarn --ignore-scripts
+- yarn install
+- yarn dev
+
+#### 建立 Vue3 体验的项目，需要如下操作：
+
+- npm update -g @vue/cli
+- vue create vue3demo
+- vue add vue-next
 
 Vue3 的使用相对于 Vue2 来说，其实差距还是挺大的，还好能完全兼容 Vue2，其实我最开始的想法是拿着 Vue2 和 Vue3 的 api 进行一对一的映射对比，这样大家的理解会更好一点，但是不是这样的，主要在 Composition 中所提供的属性和用法，不能完全和 Vue2 相对比，所以不能用一一映射的这种思路来误导大家。所以我会把 Vue2 和 Vue3 拆开来讲。
 
