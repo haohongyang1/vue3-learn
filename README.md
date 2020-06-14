@@ -2,15 +2,14 @@
 
 ## 前言：
 
-这篇文章是本人学习 Vue3 后的一点小总结，也记录的自己的学习过程。
+这篇文章是本人学习 Vue3 后的一点小总结，也记录了自己的学习过程。
 拉取代码到本地后
 
 #### 用.html 体验语法 或者 要运行/root/source/exercise/**\***.html，需要如下操作：
 
 - git submodule add https://github.com/vuejs/vue-next source/vue-next
 - git submodule update --init --recursive
-- ## 修改镜像
-
+- 修改镜像
   yarn config set registry https://registry.npm.taobao.org --global
   yarn config set disturl https://npm.taobao.org/dist --global
 

@@ -16,7 +16,8 @@ Vue3初体验：
       const { createApp, reactive, watchEffect } = Vue;
       const App = {
         template: `
-            <button @click="numUpdate">{{state.message}}</button>
+        <h3>{{state.message}}</h3>
+            <button @click="numUpdate">点我加1</button>
         `,
         setup() {
           const state = reactive({
