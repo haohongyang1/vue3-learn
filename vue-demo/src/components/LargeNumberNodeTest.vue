@@ -3,11 +3,12 @@
 -->
 <template>
   <div id="app">
-    <h1>Vue2 VDom {{ total }}节点测试</h1>
+    <h1>Vue3 VDom {{ total }}节点测试</h1>
     <h1>时间为：{{ timeDiff }}</h1>
     <div>
       <ul>
         <li v-for="i in staticTotal" :key="i">hhy</li>
+
         <li v-for="item in list" :key="item.id">
           id：{{ item.id }} random：{{ item.item }}
         </li>

@@ -5,7 +5,7 @@
 这篇文章是本人学习 Vue3 后的一点小总结，也记录了自己的学习过程。
 拉取代码到本地后
 
-#### 用.html 体验语法 或者 要运行/root/source/exercise/**\***.html，需要如下操作：
+#### 用.html 体验语法 或者 要运行/root/source/exercise/**\***.html：
 
 - git submodule add https://github.com/vuejs/vue-next source/vue-next
 - git submodule update --init --recursive
@@ -17,7 +17,7 @@
 - yarn install
 - yarn dev
 
-#### 建立 Vue3 体验的项目，需要如下操作：
+#### 建立 Vue3 体验的项目：
 
 - npm update -g @vue/cli
 - vue create vue3demo
@@ -30,22 +30,21 @@ Vue3 的使用相对于 Vue2 来说，其实差距还是挺大的，还好能完
 1.  Composition API
     在社区中，对于 Compostion API 有很多讨论，有些人是在吐槽，Vue3 的写法越来越像 React Hooks 了，但是我倒是认为吐槽 Vue3 Composition API 的人都不是非常了解 Vue3 和 React Hooks 原理，其实他们的底层原理是完全不同的；
 
-    - [ ] TODO（了解一下 Vue3 和 ReactHooks 原理及实现上的区别点）----待更新
-    - [ ] TODO 粘贴项目使用路径
+        - [ ] TODO（了解一下 Vue3 和 ReactHooks 原理及实现上的区别点）----待更新
 
 2.  按需引入
     开发者为了解决 webpack 打包文件体积过大，会有很多实践方法，比如会做一些代码压缩、代码分割、提取一些第三方库等等，但是其实都是在绕弯路，没有解决直接的问题，所以在 Vue3 使用中，支持按需引入，可以减少打包体积的同时，首屏依赖第三方无用资源变少，自然会提升加载速度；
-
-    - [ ] TODO 粘贴项目使用代码
 
 3.  ts 支持
     完全支持 ts（因为我们当前项目未使用 ts，我就不多说这里了，可以给大家简单的看一下源码，ts 其实会很方便我们去看源码）
 4.  vite
     我们都知道即使 webpack 在打包这方面做的很好了已经 ， 但是在项目非常大的时候，我们本地每修改一个文件，都会重新打包更新到 dist 文件夹下，即使只是修改一个组件中的文案，也会更新 dist 文件夹
 
-    - [ ] （待确定。是不是整个都更新啊 TODO ）
+        - [ ] （待确定。是不是整个都更新啊 TODO ）
 
-    Vu3 中，开发模式下，使用 vite 替代 webpack 提升编译打包效率，在服务器端按需拿当前文件的更新，会非常快。
+        Vu3 中，开发模式下，使用 vite 替代 webpack 提升编译打包效率，在服务器端按需拿当前文件的更新，会非常快。
+
+    > 我这边也练习了一下 Vue3，感兴趣的可以移步这里 vue-demo\src\components\CardList.vue，是一个简单的购物车示例；
 
 那么我们回到最初的话题，当前项目正在使用的 Vue2 为什么要升级为 Vue3？
 
@@ -68,7 +67,7 @@ defineProperty 缺点：
 
 Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vue 等，在 Vdom 的处理上都会有不同的思路，今天我们先聊一下 Vue3 对于 Vu2 的 Dom 操作都做了哪些优化，其中最重要的一点是对于静态节点的标记，据说在 Vdom 上的优化比 Vue2 快了 1~2 倍，如果静态节点越多，优化的速度会更明显，其中我也做了一下对比，思路是对 500 个 dom 进行随机重排，然后打印执行时间差，可以很明显的看到，在使用 Vue2 和 Vue3 的差距是非常大的。
 
-- [ ] TODO 写一个随即重排的 dom 对比；
+> 我这边也写了一个 dom 对比 vue3：vue-demo\src\components\LargeNumberNodeTest.vue，vue2：vue2-demo\src\App.vue
 
 （在这里插入一句，为什么我们的小程序要用 uni-app 框架，先抛开社区中对 uni-app 的吐槽，其实我最喜欢的一点是，在小程序中，如果你操作更新 dom，他会直接更新整个页面，不会做 dom-diff，uni-app 会做 dom-diff，大大提高了操作 dom 对于页面显示及用户体验的影响)
 
