@@ -48,7 +48,7 @@ function effect(fn, options = {}) {
 
 // ------- 构造固定格式的effect,返回值为一个配置化了的effect 函数（注意是函数，本质还是函数只不过是被配置化了）
 function createReactiveEffect(fn, options) {
-  const effect = function (...args) {
+  const effect = function effect(...args) {
     return run(effect, fn, args); // 传入的是执行的effect
   };
   effect.deps = [];
@@ -68,6 +68,7 @@ function run(effect, fn, args) {
       return fn(...args);
     } finally {
       effectStack.pop();
+      console.log("effectStack===", effectStack);
     }
   }
 }
@@ -107,6 +108,7 @@ function track(target, key) {
       // TODO 为什么是effect.deps??
       effect.deps.push(depKey);
     }
+    debugger;
   }
 }
 // ------- 数据变化后，通知更新，执行effect
