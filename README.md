@@ -25,6 +25,13 @@
 
 Vue3 的使用相对于 Vue2 来说，其实差距还是挺大的，还好能完全兼容 Vue2，其实我最开始的想法是拿着 Vue2 和 Vue3 的 api 进行一对一的映射对比，这样大家的理解会更好一点，但是不是这样的，主要在 Composition 中所提供的属性和用法，不能完全和 Vue2 相对比，所以不能用一一映射的这种思路来误导大家。所以我会把 Vue2 和 Vue3 拆开来讲。
 
+#### 创建 vite 体验的项目：
+
+- npm install vite-app vite-demo
+- cd vite-demo
+- npm install
+- npm run dev
+
 ## 一 用法-------\^.^-------如何用 Vue3 ?
 
 1.  Composition API
@@ -39,8 +46,6 @@ Vue3 的使用相对于 Vue2 来说，其实差距还是挺大的，还好能完
     完全支持 ts（因为我们当前项目未使用 ts，我就不多说这里了，可以给大家简单的看一下源码，ts 其实会很方便我们去看源码）
 4.  vite
     我们都知道即使 webpack 在打包这方面做的很好了已经 ， 但是在项目非常大的时候，我们本地每修改一个文件，都会重新打包更新到 dist 文件夹下，即使只是修改一个组件中的文案，也会更新 dist 文件夹
-
-        - [ ] （待确定。是不是整个都更新啊 TODO ）
 
         Vu3 中，开发模式下，使用 vite 替代 webpack 提升编译打包效率，在服务器端按需拿当前文件的更新，会非常快。
 
@@ -98,11 +103,11 @@ Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vu
 
 - proxy 实现数据响应式原理
 
-- [ ] TODO 实现一个简单版本的 Proxy 数据响应式
+> 位置在：\root\source\exercise\vue3.js
 
 - vite 原理
 
-- [ ] TODO 实现一个简单版本的 vite
+> 位置在：\root\vite-demo\server.js
 
 ## 五 缺点-------^.^-------
 
@@ -132,6 +137,3 @@ Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vu
 
 - [ ] tiny 编译原理
 - [ ] React Hooks 原理比较
-
-- [x] 已选中
-- [ ] 未选中
