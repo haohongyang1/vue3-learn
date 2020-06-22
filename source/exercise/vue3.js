@@ -89,7 +89,7 @@ let targetMap = new WeakMap();
 function track(target, key) {
   console.log(key);
   // 先取依赖函数
-  let effect = effectStack[effectStack.length - 1]; // ??? 为什么是effectStack.length-1
+  let effect = effectStack[effectStack.length - 1];
   if (effect) {
     // 初始化当前依赖项
     let depTarget = targetMap.get(target);
@@ -108,7 +108,6 @@ function track(target, key) {
       // TODO 为什么是effect.deps??
       effect.deps.push(depKey);
     }
-    debugger;
   }
 }
 // ------- 数据变化后，通知更新，执行effect
