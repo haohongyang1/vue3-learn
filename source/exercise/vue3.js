@@ -9,11 +9,12 @@ const baseHandler = {
     return typeof res === "object" ? reactive(res) : res;
   },
   set(target, key, value) {
+    const info = { oldValue: target[key], newValue: value };
     //   通知更新
     console.log(
       `${target}中的${key}更新了，从${Reflect.get(target, key)}变成了${value}`
     );
-    trigger(target, key, value);
+    trigger(target, key, info);
     Reflect.set(target, key, value);
   },
 };
@@ -92,21 +93,22 @@ function track(target, key) {
   let effect = effectStack[effectStack.length - 1];
   if (effect) {
     // 初始化当前依赖项
-    let depTarget = targetMap.get(target);
-    if (!targetMap.has(target)) {
-      depTarget = new Map();
-      targetMap.set(target, depTarget);
+    let depMap = targetMap.get(target);
+    if (depMap === undefined) {
+      depMap = new Map();
+      targetMap.set(target, depMap);
     }
-    let depKey = depTarget.get(key);
-    if (!depTarget.has(key)) {
-      depKey = new Set();
-      depKey.add(key);
+    let dep = depMap.get(key);
+    if (dep === undefined) {
+      dep = new Set();
+      depMap.set(key, dep);
     }
     // 开始收集
-    if (!depKey.has(effect)) {
-      depKey.add(effect);
-      // TODO 为什么是effect.deps??
-      effect.deps.push(depKey);
+    if (!dep.has(effect)) {
+      // 新增依赖
+      // 双向存储 方便查找优化
+      dep.add(effect);
+      effect.deps.push(dep);
     }
   }
 }
