@@ -82,10 +82,17 @@ defineProperty 优点：
 #### 2. 静态节点标记：
 
 Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vue 等，在 Vdom 的处理上都会有不同的思路，今天我们先聊一下 Vue3 对于 Vu2 的 Dom 操作都做了哪些优化，其中最重要的一点是对于静态节点的标记，据说在 Vdom 上的优化比 Vue2 快了 1~2 倍，如果静态节点越多，优化的速度会更明显，其中我也做了一下对比，思路是对 1000 个 dom 进行随机重排，然后打印执行时间差，可以很明显的看到，在使用 Vue2 和 Vue3 的差距是非常大的。
-
-> 我这边也写了一个 dom 对比 vue3：vue-demo\src\components\LargeNumberNodeTest.vue，vue2：vue2-demo\src\App.vue
-
 （在这里插入一句，为什么我们的小程序要用 uni-app 框架，先抛开社区中对 uni-app 的吐槽，其实我最喜欢的一点是，在原生小程序中，如果你操作更新 dom，他会直接更新整个页面，不会做 dom-diff，uni-app 会做 dom-diff，大大提高了操作 dom 对于页面显示及用户体验的影响)
+
+[Vue3 节点标记转换](https://vue-next-template-explorer.netlify.app/#%7B%22src%22%3A%22%3Cdiv%20id%3D%5C%22app%5C%22%3E%5Cr%5Cn%20%20%3Ch1%3E%E6%A0%87%E9%A2%98%3C%2Fh1%3E%5Cr%5Cn%20%20%7B%7B%20msg%20%7D%7D%5Cr%5Cn%20%20%3Cp%20%3Aid%3D%5C%22p-test%5C%22%3E%7B%7Btext%7D%7D%3C%2Fp%3E%5Cr%5Cn%20%20%3C%2Fdiv%3E%22%2C%22options%22%3A%7B%22mode%22%3A%22module%22%2C%22prefixIdentifiers%22%3Afalse%2C%22optimizeBindings%22%3Afalse%2C%22hoistStatic%22%3Afalse%2C%22cacheHandlers%22%3Afalse%2C%22scopeId%22%3Anull%7D%7D)
+
+> 我这边也写了一个 dom 对比 Vue3 和 Vue2，思路是对 1000 个动态节点和 1000 个静态节点进行初始化操作，然后读取 window.performance.time 所得到的时间差，Vue2 和 Vue3 的代码位置分别在：vue-demo\src\components\LargeNumberNodeTest.vue，vue2：vue2-demo\src\App.vue；
+
+如果本地运行，可以分别进入到 vue-demo 和 vue2-demo 项目根目录下执行 npm run serve 即可；
+比对结果截图如下：
+![Vue3](.\source\static\image\vue3_dom_init_time.png)
+![Vue2](.\source\static\image\vue2_dom_init_time.png)
+虽然每次刷新不是一个准确的时间差，但是我们可以看到，相对比 Vue2 的初始化来说，Vue3 在性能方面非常的占据优势，并且在静态节点越多的情况下，会更占据优势。如果大家感兴趣的化，可以自己更改节点的比例，或者写一个 dom-diff 的比对，都会发现 Vue3 在性能方面远远超过了 Vue2；
 
 ## 三 示例-------\^.^-------具体该怎么用呢？
 
