@@ -1,28 +1,27 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Vue3 study](#vue3-study)
   - [前言：](#%E5%89%8D%E8%A8%80)
-      - [项目目录介绍](#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D)
-      - [用.html 体验语法 或者 要运行/root/source/exercise/**\***.html：](#%E7%94%A8html-%E4%BD%93%E9%AA%8C%E8%AF%AD%E6%B3%95-%E6%88%96%E8%80%85-%E8%A6%81%E8%BF%90%E8%A1%8Crootsourceexercise%5Chtml)
-      - [建立 Vue3 体验的项目：](#%E5%BB%BA%E7%AB%8B-vue3-%E4%BD%93%E9%AA%8C%E7%9A%84%E9%A1%B9%E7%9B%AE)
-      - [创建 vite 体验的项目：](#%E5%88%9B%E5%BB%BA-vite-%E4%BD%93%E9%AA%8C%E7%9A%84%E9%A1%B9%E7%9B%AE)
+    - [项目目录介绍](#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D)
+    - [用.html 体验语法 或者 要运行/root/source/exercise/**\***.html：](#%E7%94%A8html-%E4%BD%93%E9%AA%8C%E8%AF%AD%E6%B3%95-%E6%88%96%E8%80%85-%E8%A6%81%E8%BF%90%E8%A1%8Crootsourceexercise%5Chtml)
+    - [建立 Vue3 体验的项目：](#%E5%BB%BA%E7%AB%8B-vue3-%E4%BD%93%E9%AA%8C%E7%9A%84%E9%A1%B9%E7%9B%AE)
+    - [创建 vite 体验的项目：](#%E5%88%9B%E5%BB%BA-vite-%E4%BD%93%E9%AA%8C%E7%9A%84%E9%A1%B9%E7%9B%AE)
   - [一 用法：如何用 Vue3 ?](#%E4%B8%80-%E7%94%A8%E6%B3%95%E5%A6%82%E4%BD%95%E7%94%A8-vue3-)
-      - [1. Composition API](#1-composition-api)
-      - [2. 按需引入](#2-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
-      - [3. ts 支持](#3-ts-%E6%94%AF%E6%8C%81)
-      - [4. vite](#4-vite)
-      - [最后附录实践源码](#%E6%9C%80%E5%90%8E%E9%99%84%E5%BD%95%E5%AE%9E%E8%B7%B5%E6%BA%90%E7%A0%81)
+    - [1. Composition API](#1-composition-api)
+    - [2. 按需引入](#2-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
+    - [3. ts 支持](#3-ts-%E6%94%AF%E6%8C%81)
+    - [4. vite](#4-vite)
+    - [最后附录实践源码](#%E6%9C%80%E5%90%8E%E9%99%84%E5%BD%95%E5%AE%9E%E8%B7%B5%E6%BA%90%E7%A0%81)
   - [二 优化点](#%E4%BA%8C-%E4%BC%98%E5%8C%96%E7%82%B9)
-      - [1. 数据响应式：](#1-%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F)
-      - [2. 静态节点标记：](#2-%E9%9D%99%E6%80%81%E8%8A%82%E7%82%B9%E6%A0%87%E8%AE%B0)
-      - [3. 重写 VDom---区块树](#3-%E9%87%8D%E5%86%99-vdom---%E5%8C%BA%E5%9D%97%E6%A0%91)
-      - [4. 初始化组件更高效---按需引入](#4-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%84%E4%BB%B6%E6%9B%B4%E9%AB%98%E6%95%88---%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
-      - [实践总结](#%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93)
+    - [1. 数据响应式：](#1-%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F)
+    - [2. 静态节点标记：](#2-%E9%9D%99%E6%80%81%E8%8A%82%E7%82%B9%E6%A0%87%E8%AE%B0)
+    - [3. 重写 VDom---区块树](#3-%E9%87%8D%E5%86%99-vdom---%E5%8C%BA%E5%9D%97%E6%A0%91)
+    - [4. 初始化组件更高效---按需引入](#4-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%84%E4%BB%B6%E6%9B%B4%E9%AB%98%E6%95%88---%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
+    - [实践总结](#%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93)
   - [三 原理](#%E4%B8%89-%E5%8E%9F%E7%90%86)
-      - [1. 用 proxy 实现数据响应式](#1-%E7%94%A8-proxy-%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F)
-      - [2. Vite 原理](#2-vite-%E5%8E%9F%E7%90%86)
+    - [1. 用 proxy 实现数据响应式](#1-%E7%94%A8-proxy-%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F)
+    - [2. Vite 原理](#2-vite-%E5%8E%9F%E7%90%86)
   - [四 缺点---当前 beta 版本的缺点](#%E5%9B%9B-%E7%BC%BA%E7%82%B9---%E5%BD%93%E5%89%8D-beta-%E7%89%88%E6%9C%AC%E7%9A%84%E7%BC%BA%E7%82%B9)
   - [附录](#%E9%99%84%E5%BD%95)
 
@@ -177,7 +176,7 @@ Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vu
 
 区块树的引入，解决了传统 VDom 的实现瓶颈，在传统 VDom 比对中，会依次去遍历树中节点，如图所示：
 
-![传统 VDom 的实现瓶颈](.\source\static\image\trandition_vdom.png)
+![传统 VDom 的实现瓶颈](.\source\static\image\trandition-vdom.png)
 
 虽然在 Vue2 中能够保证触发更新的组件最小化，但在单个组件内部依然需要遍历该组件的整个 dom 树，在 Vue2 中会去标记新老 dom 树的首元素尾元素，然后分别比对其是否相同，来尽可能的在层层遍历 dom 树前，猜测到当前 dom 可能的所有操作，比如倒置，但是都无法保证最坏情况下，对树的层层遍历；
 Vue3 中最让人惊讶的是，在 Vdom-diff 中又进行了优化，达到了极致，就像是当年排序算法中大家都无法突破的时间复杂度 O(n^2) ，但是快排算法却达到了 O(nlogn)，场景如此类似；
