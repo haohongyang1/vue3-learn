@@ -176,19 +176,19 @@ Vdom 是各大主流框架中老生常谈的问题，其中 React、Anguler、Vu
 
 区块树的引入，解决了传统 VDom 的实现瓶颈，在传统 VDom 比对中，会依次去遍历树中节点，如图所示：
 
-![传统 VDom 的实现瓶颈](.\source\static\image\trandition-vdom.png)
+![传统 VDom 的实现瓶颈](./source/static/image/trandition-vdom.png)
 
 虽然在 Vue2 中能够保证触发更新的组件最小化，但在单个组件内部依然需要遍历该组件的整个 dom 树，在 Vue2 中会去标记新老 dom 树的首元素尾元素，然后分别比对其是否相同，来尽可能的在层层遍历 dom 树前，猜测到当前 dom 可能的所有操作，比如倒置，但是都无法保证最坏情况下，对树的层层遍历；
 Vue3 中最让人惊讶的是，在 Vdom-diff 中又进行了优化，达到了极致，就像是当年排序算法中大家都无法突破的时间复杂度 O(n^2) ，但是快排算法却达到了 O(nlogn)，场景如此类似；
 我们来看看什么是区块树？
 
-![区块树](.\source\static\image\block_tree.png)
+![区块树](./source/static/image/block_tree.png)
 
 在图中可以看出，其实思想是有一点类似与 es6 的块级作用域
 
 为什么说 Vue3 把性能又优化到了极致呢，其实是在 Vdom 中的优化是可以体现出来的，它呢，不仅仅在编译过程优化，在执行过程中也会去优化。
 如果觉得以上说的都太抽象了，那么就上一张容易理解的图：
-![dom-diff](.\source\static\image\dom_diff.png)
+![dom-diff](./source/static/image/dom_diff.png)
 从图中可以清晰的看出在区块树中，会完全的忽略掉你的静态节点，如果你亲自去对比一下，不难发现，当你的模板中静态 dom 越多，性能优化会越明显。
 据说 Vue3 的节点标记采用了位运算，位运算是采用二进制的，但是我在项目中却没有去实际使用过，所以在这里再给自己立个 TODO，如果学完了再来更新这篇文章，
 
@@ -200,7 +200,7 @@ Vue3 中最让人惊讶的是，在 Vdom-diff 中又进行了优化，达到了�
 
 按需引入这里呢，我们先来看两张图片对比：
 
-![hello world compare](.\source\static\image\hello_world_compare.png)
+![hello world compare](./source/static/image/hello_world_compare.png)
 
 同样是 Vue2 和 Vue3 实现的 Hello world ，右边是采用按需引入的方式，如果在 Vue2 中单纯的写一个 Hello world，都要打出几兆的包，但是在 Vue3 中就只有几十 K 的大小，大大减少了出口文件的体积。
 在打包上的优势是很明显的，如果大家感兴趣的话，可以自己跑一个项目尝试一下。
@@ -220,8 +220,8 @@ Vue3 中最让人惊讶的是，在 Vdom-diff 中又进行了优化，达到了�
 如果本地运行，可以分别进入到 vue-demo 和 vue2-demo 项目根目录下执行 npm run serve 即可；
 如果懒得运行，可以直接看下面截图的结果对比。
 **比对结果截图如下：**
-![Vue3](.\source\static\image\vue3_dom_init_time.png)
-![Vue2](.\source\static\image\vue2_dom_init_time.png)
+![Vue3](./source/static/image/vue3_dom_init_time.png)
+![Vue2](./source/static/image/vue2_dom_init_time.png)
 虽然每次刷新不是一个准确的时间差，但是我们可以看到，相对比 Vue2 的初始化来说，Vue3 在性能方面非常的占据优势，并且在静态节点越多的情况下，会更占据优势。如果大家感兴趣的化，可以自己更改节点的比例，或者写一个 dom-diff 的比对，都会发现 Vue3 在性能方面远远超过了 Vue2；
 
 ## 三 原理
@@ -238,7 +238,7 @@ Vue3 中最让人惊讶的是，在 Vdom-diff 中又进行了优化，达到了�
 
 demo 原理实现思路图如下：是我手写的，大家不要嫌弃；
 
-![proxy实现数据响应式原理图](.\source\static\image\proxy-reactivity-img.jpg)
+![proxy实现数据响应式原理图](./source/static/image/proxy-reactivity-img.jpg)
 
 我是非常强烈的建议大家自己手敲一下 proxy 实现数据响应式这部分的 demo，一定会有很多收获；
 
@@ -259,7 +259,7 @@ vite 原理这里，我也是写了一个 demo，大家可以一起来看一下�
 企业级的开发中，可能不会因为技术升级，而放弃系统的稳定性来升级框架，虽然说是平滑过渡，完全兼容，但既然是两个版本，一定会有他们的差异，
 
 - 不兼容 ie：首先是 ie 兼容问题，看一下 Proxy 以及其属性在浏览器上的兼容性，这对于一些需要兼容 ie 的项目来说，可能不会敢于尝试升级，但是尤大神说他会在正式版上线前专门写一个工具来解决这个问题；
-  ![B站讲解视频](.\source\static\image\compatibility_of_proxy.png)
+  ![B站讲解视频](./source/static/image/compatibility_of_proxy.png)
 - 并不是真正的完全兼容 Vue2：在目前 beta 版的 Vue3 来看，对于 Vue2 项目直接升级到 Vue3 会有一些风险存在，据说在社区中正在有人在写工具解决这个问题，一切还是要等到正式版发布才会揭晓；
 
 但是 Vue3 还是值得我们学习的，在 MVVM 框架思想上更进一步的实现和性能的优化升级等等，而且也说不定，在正式版本发布之前，社区中就会有从 Vue2 平滑升级到 Vue3 的工具，那么我们就可以直接升级 Vue 框架，既不担心系统稳定性，又可以享受到性能的优化，所以还是主推大家去学习的。
