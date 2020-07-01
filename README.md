@@ -280,6 +280,6 @@ vite 原理这里，我也是写了一个 demo，大家可以一起来看一下�
 
 **还需要学习的 TODO list**
 
-- [ ] tiny 编译原理
+- [x] tiny 编译原理 想了解请跳转 [这里](https://github.com/haohongyang1/test-managent-one/blob/master/test_vuex/src/tiny-compiler/compiler.js)
 - [ ] React Hooks 原理比较
 - [ ] 位运算的实践
